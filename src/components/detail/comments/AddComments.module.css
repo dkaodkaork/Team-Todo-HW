@@ -1,0 +1,40 @@
+.addbox {
+  /* margin: 20px 0px; */
+  margin-bottom: 50px;
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.input_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+input {
+  margin-left: 20px;
+  width: 150px;
+  height: 25px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  outline: none;
+}
+
+textarea {
+  margin-left: 20px;
+  width: 650px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  outline: none;
+}
