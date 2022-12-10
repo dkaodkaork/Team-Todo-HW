@@ -3,13 +3,14 @@ import React from "react";
 //style
 
 //components
+import Layout from "../components/Layout";
 import Comments from "../components/detail/comments/Comments";
 
 const Detail = () => {
   return (
-    <div>
+    <Layout>
       <Comments />
-    </div>
+    </Layout>
   );
 };
 
