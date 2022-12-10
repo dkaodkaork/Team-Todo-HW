@@ -30,6 +30,10 @@ label {
   width: 99%;
   height: 40px;
   border-radius: 6px;
-  border: 1px solid #eee;
+  border: 1px solid #ba4c57;
   outline: none;
+}
+.comment:disabled {
+  background-color: transparent;
+  border: 1px solid #eee;
 }
