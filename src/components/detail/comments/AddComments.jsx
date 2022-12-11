@@ -5,9 +5,13 @@ import classes from "./AddComments.module.css";
 //components
 import Button from "../../elements/Button";
 import axios from "axios";
+//custom-hooks
+import useDate from "../../../hooks/useDate";
 
 const AddComments = ({ todoData }) => {
   console.log("todoData :", todoData);
+  //date custom-hook
+  const date = useDate();
   //postComment state
   const [postComment, setPostComment] = useState({});
 
@@ -23,7 +27,7 @@ const AddComments = ({ todoData }) => {
           username: postComment.username,
           comment: postComment.comment,
           commentId: uuid(),
-          createDate: "2022-12-14",
+          createDate: date,
           editCheck: false,
         },
       ],
