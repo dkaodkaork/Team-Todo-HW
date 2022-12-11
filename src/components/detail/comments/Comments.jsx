@@ -15,8 +15,8 @@ const CommentsList = () => {
           <div className={classes.comment_header}>
             <label>👤 이현정 님의 코멘트</label>
             <div className={classes.btn}>
-              <Button>수정하기</Button>
-              <Button>삭제하기</Button>
+              <Button>수정</Button>
+              <Button>삭제</Button>
             </div>
           </div>
           <textarea

@@ -20,7 +20,7 @@ const AddComments = () => {
             <textarea id="contents" name="contents" type="text" />
           </div>
         </div>
-        <Button>추가하기</Button>
+        <Button>등록</Button>
       </form>
     </div>
   );

@@ -14,6 +14,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+  width: 80%;
 }
 
 label {
@@ -32,7 +33,7 @@ input {
 
 textarea {
   margin-left: 20px;
-  width: 650px;
+  width: 70%;
   height: 40px;
   border-radius: 6px;
   border: 1px solid #eee;
