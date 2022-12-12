@@ -9,7 +9,7 @@ import Card from "../../elements/Card";
 import Button from "../../elements/Button";
 
 const Comments = () => {
-  const { parmsId } = useParams();
+  const { paramsId } = useParams();
 
   //전체 comments 데이터 추출
   const [commentsData, setCommentsData] = useState([]);
@@ -47,7 +47,7 @@ const Comments = () => {
   //axios를 통해서 get 요청하는 함수 생성
   const fetchComments = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/comments?todoId=${parmsId}`
+      `http://localhost:3001/comments?todoId=${paramsId}`
     );
     setCommentsData(data);
   };
