@@ -4,12 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+// !리덕스 store 연결 import
+import { Provider } from "react-redux";
+import store from "./redux/config/configStore";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  //strict mode 제거함
-  <>
+  //strict mode 제거함, 리덕스 사용을 위해 Provider로 감쌈
+  <Provider store={store}>
     <App />
-  </>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
