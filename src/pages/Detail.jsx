@@ -3,6 +3,7 @@ import React from "react";
 //style
 
 //components
+
 import Comments from "../components/detail/comments/Comments";
 
 const Detail = () => {

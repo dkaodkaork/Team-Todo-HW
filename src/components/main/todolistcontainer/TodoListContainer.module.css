@@ -1,0 +1,12 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  justify-content: center;
+}
+
+.btnbox {
+  text-align: right;
+  margin: 20px 20px 20px 0;
+}
