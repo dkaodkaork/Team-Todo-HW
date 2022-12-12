@@ -16,6 +16,7 @@
   flex-direction: column;
   justify-content: space-between;
   -webkit-box-pack: justify;
+  background-color: #c3cbd6;
 }
 
 .h1 {
