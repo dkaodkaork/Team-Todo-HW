@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import uuid from "react-uuid";
 //style
 import classes from "./AddComments.module.css";
 //components
@@ -8,38 +7,35 @@ import axios from "axios";
 //custom-hooks
 import useDate from "../../../hooks/useDate";
 
-const AddComments = ({ todoData }) => {
-  console.log("todoData :", todoData);
+const AddComments = ({ commentsData }) => {
+  //console.log("commentsData :", commentsData);
+
   //date custom-hook
   const date = useDate();
+
   //postComment state
-  const [postComment, setPostComment] = useState({});
+  const [postComment, setPostComment] = useState([]);
 
   //등록 버튼 클릭 시, 서버에 newComment POST
   const onSubmitHandlerComment = async (event) => {
     event.preventDefault();
 
     const newComment = {
-      ...todoData,
-      comments: [
-        ...todoData.comments,
-        {
-          username: postComment.username,
-          comment: postComment.comment,
-          commentId: uuid(),
-          createDate: date,
-          editCheck: false,
-        },
-      ],
+      username: postComment.username,
+      comment: postComment.comment,
+      createDate: date,
+      editCheck: false,
+      //todoId는 이미 API URL에서 받아오고 있고 -> json 형식
+      //comment의 고유 id는 json에서 자동 생성해줌
     };
-    await axios.post("http://localhost:3001/todo", newComment);
+    await axios.post(`http://localhost:3001/todos/1/comments`, newComment);
     setPostComment(newComment);
   };
-  console.log("postComment :", postComment);
+  //console.log("postComment :", postComment);
 
   //input 값 가져오기
   const onChangeHandlerInput = (event) => {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     const { name, value } = event.target;
     setPostComment({ ...postComment, [name]: value });
   };
