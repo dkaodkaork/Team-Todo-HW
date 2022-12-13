@@ -1,9 +1,7 @@
 import classes from "./CardDetail.module.css";
 import CustomButton from "../custombutton/CustomButton";
 
-const CardDetail = ({ icon, title, onClick, onClick1 }) => {
-  // const a = "detailbtn";
-  // const b = "arrowbtn";
+const CardDetail = ({ icon, title, onClickDetail, onClickProgress }) => {
   const className = {
     detail: "detailbtn",
     arrow: "arrowbtn",
@@ -14,13 +12,13 @@ const CardDetail = ({ icon, title, onClick, onClick1 }) => {
       <CustomButton
         className={className.detail}
         value="상세보기"
-        onClick={onClick}
+        onClick={onClickDetail}
       />
       <h2>{title}</h2>
       <CustomButton
         className={className.arrow}
         value={icon}
-        // onClick={onClick1}
+        onClick={onClickProgress}
       />
     </div>
   );
