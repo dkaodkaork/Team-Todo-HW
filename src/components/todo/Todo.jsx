@@ -6,23 +6,32 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Todo = () => {
   const navigate = useNavigate();
+  const { paramsId } = useParams();
+  const [todos, setTodos] = useState(null);
 
-  const [todo, setTodo] = useState(null);
   const fetchTodos = async () => {
-    const { data } = await axios.get("http://localhost:3001/todo/id");
-    setTodo(data);
+    const { data } = await axios.get(`http://localhost:3001/todos/${paramsId}`);
+    setTodos(data);
   };
 
   const onClickDelteButtonhandler = (todoId) => {
-    axios.delete(`http://localhost:3001/todo/${todoId}`);
-    setTodo([...todo, todo]);
+    axios.delete(`http://localhost:3001/todos/${todoId}`);
+    setTodos([...todos, todos]);
   };
+
+  // const onClickEditButtonHandler = (todosContent, edit) => {
+  //   const newArr = [...todosData]
+  //   const index = newArr.findIndex((el) => el.content === todosContent)
+  //   newArr[index].edit = !edit
+  //   setTodosData(newArr)
+  //   if (newArr[index].edit === )
+  //   axios.patch(`http://localhost:3001/todos/${todoContent}`, edit)
+  // };
 
   useEffect(() => {
     fetchTodos();
   }, []);
 
-  console.log(todo);
   return (
     <div className={classes.card}>
       <div className={classes.wrap}>
@@ -38,22 +47,32 @@ const Todo = () => {
           </Button>
         </div>
         <div className={classes.maintitle}>
-          <div className={classes.title}>{}</div>
+          <div className={classes.title}>{todos.title}</div>
         </div>
         <div>
-          내용
-          <p className={classes.content}>{}</p>
+          <p className={classes.content}>{todos.content}</p>
         </div>
-        오전/오후/저녁 {}
-        <div className={classes.btn}>
-          <Button
-            type="button"
-            onClick={() => onClickDelteButtonhandler(todo.id)}
-            className={classes.btn2}
-          >
-            삭제
-          </Button>
-          <Button className={classes.btn3}>수정</Button>
+
+        <div className={classes.when}>
+          <h4>
+            {todos.createDate} ({todos.when})
+          </h4>
+
+          <div className={classes.btn}>
+            <Button
+              type="button"
+              onClick={() => onClickDelteButtonhandler(todos.id)}
+              className={classes.btn2}
+            >
+              삭제
+            </Button>
+            <Button
+              // onClick={() => onClickEditButtonHandler()}
+              className={classes.btn3}
+            >
+              수정
+            </Button>
+          </div>
         </div>
       </div>
     </div>
