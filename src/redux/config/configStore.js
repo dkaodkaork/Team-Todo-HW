@@ -1,25 +1,16 @@
-// src / redux / config / configStore.js;
-
-import { configureStore } from "@reduxjs/toolkit";
-/**
- * import 해온 것은 slice.reducer 입니다.
- */
-
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { combineReducers } from "redux";
 import todos from "../modules/todosSlice";
 
-const store = configureStore({
-  reducer: { todos: todos },
+import todo from "../modules/todo";
+import commentsReducer from "../modules/commentsReducer";
+
+const rootReducer = combineReducers({
+  comments: commentsReducer, todo: todo, todos:todos
 });
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
 
-// import { createStore } from "redux";
-// import { combineReducers } from "redux";
-// import todolist from "../modules/todolist";
 
-// const rootReducer = combineReducers({
-//   todolist: todolist,
-// });
-// const store = createStore(rootReducer);
-
-// export default store;
