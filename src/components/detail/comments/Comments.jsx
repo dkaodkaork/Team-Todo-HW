@@ -17,7 +17,6 @@ const Comments = () => {
 
   //전체 comments 데이터 추출
   const commentsData_redux = useSelector((state) => state.comments.comments);
-  console.log(commentsData_redux);
   const [commentsData, setCommentsData] = useState([]);
   //console.log(commentsData);
 
@@ -63,6 +62,7 @@ const Comments = () => {
     <div>
       <AddComments />
       {commentsData_redux.map((comment) => {
+        console.log(comment.id);
         return (
           <Card className={classes.comment_wrap} key={comment.id}>
             <form
