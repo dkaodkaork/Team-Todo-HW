@@ -91,7 +91,6 @@ const AddTodoForm = (props) => {
               type="textArea"
               required
             />
-            <div>제목을 입력해주세요!</div>
           </div>
           <div className={classes.inputContentDiv}>
             <label style={{}} htmlFor="content">
