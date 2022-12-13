@@ -4,7 +4,7 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  todolist: [], // data
+  todos: [], // data
   isLoading: false, // 서버에서 todos를 가져오는 상태를 나타내는 값 서버 통신이 시작되면 TRUE였다가 통신이 끝나면 다시 FALSE로 변경
   error: null, // 서버에서 통신이 실패할 경우에 서버에서 보내주는ㄴ 에러메세지를 담아 놓는 것
 };
@@ -13,7 +13,7 @@ export const __getTodos = createAsyncThunk(
   "getTodos",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3005/todolist");
+      const data = await axios.get("http://localhost:3005/todos");
       //   console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -24,18 +24,26 @@ export const __getTodos = createAsyncThunk(
 );
 // 각각의 API가 Dispatch 해줄 Reducer를 만들어야한다.
 // dispatch 라는 것은 reducer에게 ACtion과 payload를 전달
+// export const __updateProgress = createAsyncThunk(
+//   "updateProgress",
+//   async (payload, thunkAPI) => {}
+// );
 
 export const todosSlice = createSlice({
   name: "todos",
   initialState,
-  reducers: {},
+  reducers: {
+    // toggleStatusTodo: (state, action) => {
+    //   console.log(state);
+    // },
+  },
   extraReducers: {
     [__getTodos.pending]: (state) => {
       state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
     },
     [__getTodos.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.todolist = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+      state.todos = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
     [__getTodos.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
@@ -44,7 +52,7 @@ export const todosSlice = createSlice({
   },
 });
 
-export const {} = todosSlice.actions;
+export const { toggleStatusTodo } = todosSlice.actions;
 export default todosSlice.reducer;
 
 //1. thunk 함수 추가    import 부터

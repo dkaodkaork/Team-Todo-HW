@@ -8,7 +8,7 @@ import {
 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 // import { toggleStatusTodo } from "../../../redux/modules/todolist";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { __getTodos } from "../../../redux/modules/todosSlice";
 
 const TodoCardList = ({ progressName }) => {
@@ -16,19 +16,18 @@ const TodoCardList = ({ progressName }) => {
   const dispatch = useDispatch();
 
   // const todoList = useSelector((state) => state.todolist.todolist);
-  const todoList = useSelector((state) => state.todos.todolist);
-
-  console.log(todoList);
+  const { todos } = useSelector((state) => state.todos);
+  console.log(todos);
 
   useEffect(() => {
     dispatch(__getTodos());
   }, [dispatch]);
 
-  const data = todoList.filter((element) => element.progress === progressName);
+  const data = todos.filter((element) => element.progress === progressName);
   console.log(data);
 
   const navigate = useNavigate();
-  const cardTitle = data.title;
+  // const cardTitle = data.title;
   console.log(data);
 
   const arrowIcon = {
