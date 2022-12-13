@@ -7,10 +7,11 @@ import { useNavigate, useParams } from "react-router-dom";
 const Todo = () => {
   const navigate = useNavigate();
   const { paramsId } = useParams();
-  const [todos, setTodos] = useState(null);
+  const [todos, setTodos] = useState([]);
 
   const fetchTodos = async () => {
     const { data } = await axios.get(`http://localhost:3001/todos/${paramsId}`);
+    console.log(data);
     setTodos(data);
   };
 
@@ -55,7 +56,7 @@ const Todo = () => {
 
         <div className={classes.when}>
           <h4>
-            {todos.createDate} ({todos.when})
+            {todos.when} ({todos.createDate})
           </h4>
 
           <div className={classes.btn}>
