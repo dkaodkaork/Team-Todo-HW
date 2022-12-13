@@ -20,7 +20,7 @@ const CardDetail = ({ icon, title, onClick, onClick1 }) => {
       <CustomButton
         className={className.arrow}
         value={icon}
-        onClick={onClick1}
+        // onClick={onClick1}
       />
     </div>
   );
