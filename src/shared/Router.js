@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "../pages/Main";
 import AddTodoPage from "../pages/AddTodoPage";
 import Detail from "../pages/Detail";
+import Layout from "../components/main/layout/Layout";
 
 const Router = () => {
   return (

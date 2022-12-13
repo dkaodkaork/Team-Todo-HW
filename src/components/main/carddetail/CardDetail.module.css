@@ -1,0 +1,18 @@
+.detail {
+  width: 300px;
+
+  height: 180px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px; /* flex 아이템들의 간격 설정*/
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background-color: #fbd7de;
+}
