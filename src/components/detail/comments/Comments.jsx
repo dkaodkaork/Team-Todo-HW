@@ -37,7 +37,7 @@ const Comments = () => {
     newArr[index].editCheck = !editCheck;
     setCommentsData(newArr);
     if (newArr[index].editCheck === false) {
-      axios.patch(`http://localhost:3001/comments/${commentId}`, {
+      axios.patch(`https://hw99-json-server.vercel.app/comments/${commentId}`, {
         comment: newArr[index].comment,
       });
     }

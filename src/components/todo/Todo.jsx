@@ -10,12 +10,14 @@ const Todo = () => {
   const [todos, setTodos] = useState([]);
 
   const fetchTodos = async () => {
-    const { data } = await axios.get(`http://localhost:3001/todos/${paramsId}`);
+    const { data } = await axios.get(
+      `https://hw99-json-server.vercel.app/todos/${paramsId}`
+    );
     setTodos(data);
   };
 
   const onClickDelteButtonhandler = (todoId) => {
-    axios.delete(`http://localhost:3001/todos/${todoId}`);
+    axios.delete(`https://hw99-json-server.vercel.app/todos/${todoId}`);
     setTodos([...todos, todos]);
   };
 

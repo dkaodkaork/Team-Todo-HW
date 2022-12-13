@@ -56,7 +56,17 @@ const AddTodoForm = (props) => {
       alert("언제할지 선택해주세요");
     }
     if (state.title && state.content !== "" && when.value !== "") {
-      await axios.post("http://localhost:3001/todos", newTodo);
+      await axios
+        .post("https://hw99-json-server.vercel.app/todos", newTodo, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
       dispatch(addTodo(newTodo));
       setState({ title: "", content: "" });
       setWhen({ checked: false, when: "" });
