@@ -9,7 +9,7 @@ import axios from "axios";
 import useDate from "../../../hooks/useDate";
 
 const AddComments = () => {
-  const { parmsId } = useParams();
+  const { paramsId } = useParams();
   const date = useDate();
 
   //Input[username, comment] state
@@ -27,7 +27,7 @@ const AddComments = () => {
       //고유 id는 json에서 자동 생성해주기 때문에 따로 데이터를 넘길 필요 없음!
     };
     await axios.post(
-      `http://localhost:3001/todos/${parmsId}/comments`,
+      `http://localhost:3001/todos/${paramsId}/comments`,
       newComment
     );
   };
