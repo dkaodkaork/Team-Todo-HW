@@ -1,41 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
+import uuid from "react-uuid";
 //style
 import classes from "./AddComments.module.css";
 //components
 import Button from "../../elements/Button";
-import axios from "axios";
 //custom-hooks
 import useDate from "../../../hooks/useDate";
+//redux
+import { useDispatch } from "react-redux";
+import { commentsAction } from "../../../redux/actions/commentsAction";
 
-const AddComments = ({ commentsData }) => {
-  //console.log("commentsData :", commentsData);
-
-  //date custom-hook
+const AddComments = () => {
+  const { paramsId } = useParams();
   const date = useDate();
+  const dispatch = useDispatch();
 
-  //postComment state
-  const [postComment, setPostComment] = useState([]);
+  //Input[username, comment] state
+  const [postComment, setPostComment] = useState({});
 
   //등록 버튼 클릭 시, 서버에 newComment POST
   const onSubmitHandlerComment = async (event) => {
     event.preventDefault();
-
     const newComment = {
       username: postComment.username,
       comment: postComment.comment,
       createDate: date,
       editCheck: false,
-      //todoId는 이미 API URL에서 받아오고 있고 -> json 형식
-      //comment의 고유 id는 json에서 자동 생성해줌
+      id: uuid(),
+      //고유 id는 json에서 자동 생성해주기 때문에 따로 데이터를 넘길 필요 없음! -> 넘겨줘야함 State로 관리할 때 id 값이 없음
+      //todoId: 해당todoid   -->  todoId는 이미 API URL에서 받아오고 있음 -> json-server가 해당 todo의 id를 읽어오는 방식으로 키값을 todo안에 id를 읽어오겠다할 때 todoId 이렇게 써야함!
     };
-    await axios.post(`http://localhost:3001/todos/1/comments`, newComment);
-    setPostComment(newComment);
+
+    dispatch(commentsAction.postComment(paramsId, newComment));
+
+    //저장 후 input 내용 빈 값 처리
+    setPostComment({
+      username: "",
+      comment: "",
+    });
   };
-  //console.log("postComment :", postComment);
 
   //input 값 가져오기
   const onChangeHandlerInput = (event) => {
-    //console.log(event.target.value);
     const { name, value } = event.target;
     setPostComment({ ...postComment, [name]: value });
   };
@@ -72,39 +79,3 @@ const AddComments = ({ commentsData }) => {
 };
 
 export default AddComments;
-
-// //등록 버튼 클릭 시, 서버에 newComment POST
-// const onSubmitHandlerComment = async (event) => {
-//   event.preventDefault();
-//   const newComment = {
-//     ...todoData,
-//     comments: [
-//       {
-//         username: postComment.username,
-//         comment: postComment.comment,
-//         commentId: uuid(),
-//         createDate: "2022-12-14",
-//         editCheck: false,
-//       },
-//     ],
-//   };
-//   await axios.post(`http://localhost:3001/todo/${id}/comments`, newComment);
-//   setPostComment(newComment);
-// };
-// console.log("postComment :", postComment);
-
-//등록 버튼 클릭 시, 서버에 newComment POST
-// const onSubmitHandlerComment = async (event) => {
-//   event.preventDefault();
-
-//   const newComment = {
-//     username: postComment.username,
-//     comment: postComment.comment,
-//     commentId: uuid(),
-//     createDate: "2022-12-14",
-//     editCheck: false,
-//   };
-//   await axios.post("http://localhost:3001/todo", newComment);
-//   setPostComment(newComment);
-// };
-// console.log("postComment :", postComment);
