@@ -6,9 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./redux/config/configStore";
 
+// !리덕스 store 연결 import
+import { Provider } from "react-redux";
+import store from "./redux/config/configStore";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  //strict mode 제거함
   <Provider store={store}>
     <App />
   </Provider>

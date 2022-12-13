@@ -1,7 +1,16 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { combineReducers } from "redux";
+
+import todo from "../modules/todo";
 import commentsReducer from "../modules/commentsReducer";
+
+const rootReducer = combineReducers({
+  comments: commentsReducer, todo: todo
+});
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+export default store;
 
 /*
 1. createStore()
@@ -16,10 +25,3 @@ import commentsReducer from "../modules/commentsReducer";
 이때 애플리케이션이 복잡해지게 되면 reducer 부분을 여러 개로 나눠야 하는 경우가 발생합니다. 
 combineReducers은 여러 개의 독립적인 reducer의 반환 값을 하나의 상태 객체로 만들어줍니다.
 */
-
-const rootReducer = combineReducers({
-  comments: commentsReducer,
-});
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-export default store;
