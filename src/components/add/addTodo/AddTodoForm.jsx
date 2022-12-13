@@ -1,27 +1,30 @@
 import { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import uuid from "react-uuid";
 
 import { addTodo } from "../../../redux/modules/todo";
 import classes from "./AddTodoForm.module.css";
 import Button from "../../elements/Button";
 import useDate from "../../../hooks/useDate";
 
-const AddTodo = () => {
+const AddTodoForm = (props) => {
+  console.log(props.modal.clicked);
+
   const [state, setState] = useState({ title: "", content: "" });
   const [when, setWhen] = useState({ checked: false, value: "" });
-  const date = useDate();
-  // const [todo, setTodo] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const date = useDate();
 
   const titleInput = useRef();
   const radioInput1 = useRef();
   const radioInput2 = useRef();
   const radioInput3 = useRef();
 
-  const todoList = useSelector((state) => state.todo.todos);
-  console.log(todoList);
   const eventHander = (e) => {
     const id = e.target.id;
     const value = e.target.value;
@@ -38,14 +41,22 @@ const AddTodo = () => {
     event.preventDefault();
 
     const newTodo = {
+      id: uuid(),
       title: state.title,
       content: state.content,
       progress: "plan",
       when: when.value,
-      date: date,
+      createDate: date,
     };
-    if (state.title && state.content !== "" && when !== "") {
-      await axios.post("http://localhost:3001/posts", newTodo);
+    if (state.title === "") {
+      alert("제목을 입력해주세요");
+    } else if (state.content === "") {
+      alert("내용을 입력해주세요");
+    } else if (when.value === "") {
+      alert("언제할지 선택해주세요");
+    }
+    if (state.title && state.content !== "" && when.value !== "") {
+      await axios.post("http://localhost:3001/todos", newTodo);
       dispatch(addTodo(newTodo));
       setState({ title: "", content: "" });
       setWhen({ checked: false, when: "" });
@@ -53,60 +64,93 @@ const AddTodo = () => {
       radioInput2.current.checked = false;
       radioInput3.current.checked = false;
       titleInput.current.focus();
+      props.modal.clicked = true;
     }
   };
-
   return (
     <div>
-      <h3>Team's Todo Add Todo</h3>
-      <hr />
-      <div className={classes.formContainer}>
+      <div className={classes.addTodoContainer}>
+        <Button
+          className={classes.addTodoGobackbtn}
+          onClick={() => navigate("/")}
+        >
+          이전으로
+        </Button>
         <form className={classes.formContainer}>
-          <label htmlFor="title">제목</label>
-          {/* 제목입력 */}
-          <input
-            id="title"
-            value={state.title}
-            onChange={eventHander}
-            ref={titleInput}
-          />
-          <label htmlFor="content">내용</label>
-          {/* 내용입력 */}
-          <input id="content" value={state.content} onChange={eventHander} />
-          <div className={classes.whenSelect}>
-            <label htmlFor="morning">오전</label>
-            <input
-              id="morning"
-              type="radio"
-              name="when"
-              value="morning"
-              onChange={whenStateChangeHandler}
-              ref={radioInput1}
+          <div className={classes.inputTitleDiv}>
+            <label style={{}} htmlFor="title">
+              제목
+            </label>
+            <textarea
+              maxLength={30}
+              id="title"
+              value={state.title}
+              onChange={eventHander}
+              ref={titleInput}
+              className={classes.inputTitle}
+              type="textArea"
+              required
             />
-            <label htmlFor="afternoon">오후</label>
-            <input
-              id="afternoon"
-              type="radio"
-              name="when"
-              value="afternoon"
-              onChange={whenStateChangeHandler}
-              ref={radioInput2}
-            />
-            <label htmlFor="evening">밤</label>
-            <input
-              id="evening"
-              type="radio"
-              name="when"
-              value="evening"
-              onChange={whenStateChangeHandler}
-              ref={radioInput3}
+            <div>제목을 입력해주세요!</div>
+          </div>
+          <div className={classes.inputContentDiv}>
+            <label style={{}} htmlFor="content">
+              내용
+            </label>
+            <textarea
+              maxLength={50}
+              id="content"
+              value={state.content}
+              onChange={eventHander}
+              className={classes.inputContent}
+              required
             />
           </div>
-          <Button onClick={addTodoHandler}>추가</Button>
+
+          <div className={classes.inputWhenSelect}>
+            <label className={classes.inputWhenMorning}>
+              <input
+                id="morning"
+                type="radio"
+                name="when"
+                value="morning"
+                onChange={whenStateChangeHandler}
+                ref={radioInput1}
+              />
+              <span>오전 (AM)</span>
+            </label>
+
+            <label className={classes.inputWhenAfternoon}>
+              <input
+                id="afternoon"
+                type="radio"
+                name="when"
+                value="afternoon"
+                onChange={whenStateChangeHandler}
+                ref={radioInput2}
+              />
+              <span> 오후 (PM)</span>
+            </label>
+
+            <label className={classes.inputWhenEvening}>
+              <input
+                id="evening"
+                type="radio"
+                name="when"
+                value="evening"
+                onChange={whenStateChangeHandler}
+                ref={radioInput3}
+              />
+              <span>밤 (Night)</span>
+            </label>
+          </div>
         </form>
+        <Button className={classes.addTodoBtn} onClick={addTodoHandler}>
+          추가
+        </Button>
       </div>
     </div>
   );
 };
 
-export default AddTodo;
+export default AddTodoForm;
