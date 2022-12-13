@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const Todo = () => {
   const navigate = useNavigate();
   const { paramsId } = useParams();
-  const [todos, setTodos] = useState(null);
+  const [todos, setTodos] = useState([]);
 
   const fetchTodos = async () => {
     const { data } = await axios.get(`http://localhost:3001/todos/${paramsId}`);
@@ -19,6 +19,10 @@ const Todo = () => {
     setTodos([...todos, todos]);
   };
 
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
   // const onClickEditButtonHandler = (todosContent, edit) => {
   //   const newArr = [...todosData]
   //   const index = newArr.findIndex((el) => el.content === todosContent)
@@ -27,10 +31,6 @@ const Todo = () => {
   //   if (newArr[index].edit === )
   //   axios.patch(`http://localhost:3001/todos/${todoContent}`, edit)
   // };
-
-  useEffect(() => {
-    fetchTodos();
-  }, []);
 
   return (
     <div className={classes.card}>

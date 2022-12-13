@@ -13,7 +13,7 @@ export const __getTodos = createAsyncThunk(
   "getTodos",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3005/todos");
+      const data = await axios.get("http://localhost:3001/todos");
       //   console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
