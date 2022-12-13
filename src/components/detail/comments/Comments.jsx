@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Comments = () => {
   const dispatch = useDispatch();
-  const { paramsId } = useParams();
 
+  const { paramsId } = useParams();
   //전체 comments 데이터 추출
   const commentsData_redux = useSelector((state) => state.comments.comments);
   const [commentsData, setCommentsData] = useState([]);

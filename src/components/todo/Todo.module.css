@@ -9,8 +9,8 @@
   justify-content: center;
 }
 .wrap {
-  width: 600px;
-  height: 500px;
+  width: 1000px;
+  height: 900px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -75,4 +75,9 @@
 .content {
   margin-left: 10px;
   font-size: 40px;
+}
+
+.when {
+  justify-content: space-between;
+  margin-left: 10px;
 }
