@@ -1,4 +1,4 @@
-.detail {
+.morningCard {
   width: 300px;
 
   height: 180px;
@@ -14,5 +14,43 @@
 
   border-radius: 10px;
 
-  background-color: #fbd7de;
+  background-color: #c3dafa;
+}
+
+.afternoonCard {
+  width: 300px;
+
+  height: 180px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px; /* flex 아이템들의 간격 설정*/
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background-color: #c5f3bb;
+}
+
+.eveningCard {
+  width: 300px;
+
+  height: 180px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px; /* flex 아이템들의 간격 설정*/
+
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background-color: #f5b8be;
 }
