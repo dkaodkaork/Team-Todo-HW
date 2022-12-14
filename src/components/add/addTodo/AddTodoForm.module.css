@@ -1,6 +1,6 @@
 .addTodoContainer {
   width: 600px;
-  height: 400px;
+  height: 450px;
   border: 1px solid white;
   border-radius: 10px;
   display: flex;
@@ -10,7 +10,7 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .addTodoGobackbtn {
-  margin: 5px 75%;
+  margin: 20px 71% 0 71%;
   height: 40px;
   width: 140px;
   border: 2px solid #d05663 !important;
@@ -27,11 +27,12 @@
   display: flex;
   flex-direction: column;
   /* margin: 0 auto; */
-  gap: 15px;
+  /* gap: 5px; */
   padding: 15px;
 }
 .inputTitleDiv {
   display: flex;
+
   align-items: center;
 }
 .inputTitle {
@@ -62,7 +63,7 @@
   margin: 10px auto; */
   display: flex;
   gap: 70px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 [type="radio"] {
   vertical-align: middle;
@@ -84,4 +85,10 @@
 .addTodoBtn:hover,
 .addTodoBtn:active {
   background: #be4c57 !important;
+}
+.alertTxt {
+  color: #be4c57;
+  text-align: center;
+  height: 22px;
+  /* display: none; */
 }

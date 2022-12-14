@@ -79,6 +79,11 @@ const AddTodoForm = ({ modal, setModal }) => {
       setModal({ ...modal, clicked: true });
     }
   };
+  const alertMsgArr = [
+    "제목을 입력해주세요",
+    "내용을 입력해주세요",
+    "언제할 지 선택해주세요",
+  ];
   return (
     <div>
       <div className={classes.addTodoContainer}>
@@ -104,6 +109,7 @@ const AddTodoForm = ({ modal, setModal }) => {
               required
             />
           </div>
+          <div className={classes.alertTxt}></div>
           <div className={classes.inputContentDiv}>
             <label style={{}} htmlFor="content">
               내용
@@ -117,6 +123,7 @@ const AddTodoForm = ({ modal, setModal }) => {
               required
             />
           </div>
+          <div className={classes.alertTxt}></div>
 
           <div className={classes.inputWhenSelect}>
             <label className={classes.inputWhenMorning}>
@@ -130,7 +137,6 @@ const AddTodoForm = ({ modal, setModal }) => {
               />
               <span>오전 (AM)</span>
             </label>
-
             <label className={classes.inputWhenAfternoon}>
               <input
                 id="afternoon"
@@ -142,7 +148,6 @@ const AddTodoForm = ({ modal, setModal }) => {
               />
               <span> 오후 (PM)</span>
             </label>
-
             <label className={classes.inputWhenEvening}>
               <input
                 id="evening"
@@ -155,6 +160,7 @@ const AddTodoForm = ({ modal, setModal }) => {
               <span>밤 (Night)</span>
             </label>
           </div>
+          <div className={classes.alertTxt}></div>
         </form>
         <Button className={classes.addTodoBtn} onClick={addTodoHandler}>
           추가
