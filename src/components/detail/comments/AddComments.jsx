@@ -60,7 +60,7 @@ const AddComments = () => {
 
   return (
     <div>
-      <h3>Team's Todo Comments</h3>
+      <h3 className={classes.title}>Team's Todo Comments</h3>
       <hr />
       <form className={classes.addbox} onSubmit={onSubmitHandlerComment}>
         <div className={classes.input_box}>

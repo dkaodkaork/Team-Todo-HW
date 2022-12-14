@@ -1,3 +1,15 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlovalStyle = createGlobalStyle`
+
+:root{
+  --color-todos: #F24B59;
+  --color-working: #323F59;
+  --color-done: #203A40;
+  --color-main: #F2F2F2;
+  --color-button: #e66980;
+}
+
 @font-face {
   font-family: "Pretendard-Regular";
   src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
@@ -24,9 +36,8 @@
 }
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
+`;
 
-html {
-  font-size: 10px;
-}
+export default GlovalStyle;
