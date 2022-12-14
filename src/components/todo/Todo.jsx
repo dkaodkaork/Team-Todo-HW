@@ -14,33 +14,40 @@ const Todo = () => {
     content: "",
   });
 
+
   const fetchTodos = async () => {
-    const { data } = await axios.get(`http://localhost:3001/todos/${paramsId}`);
+    const { data } = await axios.get(
+      `https://wild-insidious-parsnip.glitch.me/todos/${paramsId}`
+    );
     setTodos(data);
   };
 
   const onClickDelteButtonhandler = (todoId) => {
-    axios.delete(`http://localhost:3001/todos/${todoId}`);
+    axios.delete(`https://wild-insidious-parsnip.glitch.me/todos/${todoId}`);
     setTodos([...todos, todos]);
   };
+
 
   const onClickEditButtonHandler = (todoId, edit) => {
     axios.patch(`http://localhost:3001/todos/${todoId}`, edit);
   };
 
-  // const onChangeTextareaContentHandler = (event, content) => {
-  //   const newArr = [...contentsData_redux];
-  //   const index = newArr.findIndex((el) => el.id === content);
-  //   newArr[index].content = event.target.value;
-  //   setContentsData(newArr);
-  // };
-  // console.log(todos.content);
-
-  const setContentsData = () => {};
 
   useEffect(() => {
     fetchTodos();
   }, []);
+
+  // const onClickEditButtonHandler = (todosContent, edit) => {
+  //   const newArr = [...todosData]
+  //   const index = newArr.findIndex((el) => el.content === todosContent)
+  //   newArr[index].edit = !edit
+  //   setTodosData(newArr)
+  //   if (newArr[index].edit === )
+  //   axios.patch(`http://localhost:3001/todos/${todoContent}`, edit)
+  // };
+  // console.log(todos.content);
+
+  const setContentsData = () => {};
 
   return (
     <div className={classes.card}>

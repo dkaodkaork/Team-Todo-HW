@@ -37,9 +37,12 @@ const Comments = () => {
     newArr[index].editCheck = !editCheck;
     setCommentsData(newArr);
     if (newArr[index].editCheck === false) {
-      axios.patch(`http://localhost:3001/comments/${commentId}`, {
-        comment: newArr[index].comment,
-      });
+      axios.patch(
+        `https://wild-insidious-parsnip.glitch.me/comments/${commentId}`,
+        {
+          comment: newArr[index].comment,
+        }
+      );
     }
   };
 

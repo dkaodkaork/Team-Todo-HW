@@ -1,12 +1,8 @@
 import React from "react";
+import TodoListContainer from "../components/main/todolistcontainer/TodoListContainer";
 
 const Main = () => {
-  return (
-    <div>
-      <div>Main</div>
-      <button>추가</button>
-    </div>
-  );
+  return <TodoListContainer />;
 };
 
 export default Main;

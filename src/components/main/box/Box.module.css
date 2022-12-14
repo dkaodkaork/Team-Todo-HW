@@ -1,0 +1,16 @@
+.state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 330px;
+  height: 60px;
+
+  font-size: 40px;
+  font-weight: 600;
+
+  background-color: black;
+  color: white;
+
+  border-radius: 10px;
+}

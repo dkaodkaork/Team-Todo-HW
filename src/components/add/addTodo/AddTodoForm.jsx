@@ -56,7 +56,17 @@ const AddTodoForm = (props) => {
       alert("언제할지 선택해주세요");
     }
     if (state.title && state.content !== "" && when.value !== "") {
-      await axios.post("http://localhost:3001/todos", newTodo);
+      await axios
+        .post("https://wild-insidious-parsnip.glitch.me/todos", newTodo, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
       dispatch(addTodo(newTodo));
       setState({ title: "", content: "" });
       setWhen({ checked: false, when: "" });
@@ -91,7 +101,6 @@ const AddTodoForm = (props) => {
               type="textArea"
               required
             />
-            <div>제목을 입력해주세요!</div>
           </div>
           <div className={classes.inputContentDiv}>
             <label style={{}} htmlFor="content">

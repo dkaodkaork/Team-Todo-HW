@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* flex 아이템들의 간격 설정*/
+
+  padding: 20px;
+
+  /* border: 5px solid rgb(245, 203, 203); */
+  border-radius: 40px;
+}
+
+.state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 330px;
+  height: 60px;
+
+  font-size: 40px;
+  font-weight: 600;
+
+  background-color: black;
+  color: white;
+
+  border-radius: 10px;
+}
