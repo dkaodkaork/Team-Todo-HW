@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,9 +9,7 @@ import classes from "./AddTodoForm.module.css";
 import Button from "../../elements/Button";
 import useDate from "../../../hooks/useDate";
 
-const AddTodoForm = (props) => {
-  console.log(props.modal.clicked);
-
+const AddTodoForm = ({ modal, setModal }) => {
   const [state, setState] = useState({ title: "", content: "" });
   const [when, setWhen] = useState({ checked: false, value: "" });
 
@@ -24,6 +22,10 @@ const AddTodoForm = (props) => {
   const radioInput1 = useRef();
   const radioInput2 = useRef();
   const radioInput3 = useRef();
+
+  useEffect(() => {
+    setModal({ ...modal, clicked: false });
+  }, []);
 
   const eventHander = (e) => {
     const id = e.target.id;
@@ -74,7 +76,7 @@ const AddTodoForm = (props) => {
       radioInput2.current.checked = false;
       radioInput3.current.checked = false;
       titleInput.current.focus();
-      props.modal.clicked = true;
+      setModal({ ...modal, clicked: true });
     }
   };
   return (
