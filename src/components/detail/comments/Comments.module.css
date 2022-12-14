@@ -38,6 +38,7 @@ label {
   border-radius: 6px;
   border: 1px solid #ba4c57;
   outline: none;
+  resize: none;
 }
 .comment:disabled {
   background-color: transparent;
