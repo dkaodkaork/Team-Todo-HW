@@ -1,28 +1,22 @@
 import classes from "./CardDetail.module.css";
 import CustomButton from "../custombutton/CustomButton";
 
-const CardDetail = ({
-  icon,
-  title,
-  onClickDetail,
-  onClickProgress,
-  className,
-}) => {
-  const btnclassName = {
+const CardDetail = ({ icon, title, onClickDetail, onClickProgress }) => {
+  const className = {
     detail: "detailbtn",
     arrow: "arrowbtn",
   };
 
   return (
-    <div className={classes[className]}>
+    <div className={classes.detail}>
       <CustomButton
-        className={btnclassName.detail}
+        className={className.detail}
         value="상세보기"
         onClick={onClickDetail}
       />
       <h2>{title}</h2>
       <CustomButton
-        className={btnclassName.arrow}
+        className={className.arrow}
         value={icon}
         onClick={onClickProgress}
       />

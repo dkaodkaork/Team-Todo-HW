@@ -22,11 +22,6 @@ const TodoCardList = ({ progressName }) => {
     plan: <HiOutlineArrowCircleRight size="45" color="white" />,
     working: <HiOutlineArrowCircleRight size="45" color="white" />,
   };
-  const cardColor = {
-    morning: "morningCard",
-    afternoon: "afternoonCard",
-    evening: "eveningCard",
-  };
 
   const onClickCard = (id) => {
     navigate(`/detail/${id}`);
@@ -46,13 +41,6 @@ const TodoCardList = ({ progressName }) => {
           onClickDetail={() => onClickCard(todo.id)}
           onClickProgress={() => onToggleStatusTodo(todo.id)}
           key={todo.id}
-          className={
-            todo.when === "morning"
-              ? cardColor.morning
-              : todo.when === "afternoon"
-              ? cardColor.afternoon
-              : cardColor.evening
-          }
         />
       ))}
     </div>
