@@ -3,15 +3,19 @@ import classes from "./Todo.module.css";
 import axios from "axios";
 import Button from "../elements/Button";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Todo = () => {
   const navigate = useNavigate();
   const { paramsId } = useParams();
   const [todos, setTodos] = useState([]);
+  const [targetId, setTargetId] = useState([]);
+  const [editTodo, setEditTodo] = useState({
+    content: "",
+  });
 
   const fetchTodos = async () => {
     const { data } = await axios.get(`http://localhost:3001/todos/${paramsId}`);
-    console.log(data);
     setTodos(data);
   };
 
@@ -20,14 +24,19 @@ const Todo = () => {
     setTodos([...todos, todos]);
   };
 
-  // const onClickEditButtonHandler = (todosContent, edit) => {
-  //   const newArr = [...todosData]
-  //   const index = newArr.findIndex((el) => el.content === todosContent)
-  //   newArr[index].edit = !edit
-  //   setTodosData(newArr)
-  //   if (newArr[index].edit === )
-  //   axios.patch(`http://localhost:3001/todos/${todoContent}`, edit)
+  const onClickEditButtonHandler = (todoId, edit) => {
+    axios.patch(`http://localhost:3001/todos/${todoId}`, edit);
+  };
+
+  // const onChangeTextareaContentHandler = (event, content) => {
+  //   const newArr = [...contentsData_redux];
+  //   const index = newArr.findIndex((el) => el.id === content);
+  //   newArr[index].content = event.target.value;
+  //   setContentsData(newArr);
   // };
+  // console.log(todos.content);
+
+  const setContentsData = () => {};
 
   useEffect(() => {
     fetchTodos();
@@ -50,15 +59,23 @@ const Todo = () => {
         <div className={classes.maintitle}>
           <div className={classes.title}>{todos.title}</div>
         </div>
-        <div>
-          <p className={classes.content}>{todos.content}</p>
+        <div className={classes.content}>
+          {}
+          <textarea
+            className={classes.remove}
+            type="text"
+            value={todos.content}
+            placeholder="수정값 입력"
+            onChange={(ev) => {
+              setEditTodo({
+                ...editTodo,
+                title: ev.target.value,
+              });
+            }}
+          />
         </div>
 
         <div className={classes.when}>
-          <h4>
-            {todos.when} ({todos.createDate})
-          </h4>
-
           <div className={classes.btn}>
             <Button
               type="button"
@@ -67,11 +84,14 @@ const Todo = () => {
             >
               삭제
             </Button>
+
             <Button
-              // onClick={() => onClickEditButtonHandler()}
+              // onClick={() =>
+              //   onClickEditButtonHandler(targetId, content.editTodo)
+              // }
               className={classes.btn3}
             >
-              수정
+              완료
             </Button>
           </div>
         </div>
