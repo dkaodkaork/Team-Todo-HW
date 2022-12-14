@@ -4,7 +4,7 @@ const postComment = (paramsId, newComment) => {
   return async (dispatch, getState) => {
     console.log(getState);
     await axios.post(
-      `https://wild-insidious-parsnip.glitch.me/comments`,
+      `https://wild-insidious-parsnip.glitch.me/todos/${paramsId}/comments`,
       newComment
     );
     dispatch({ type: "POST_COMMENT", payload: newComment });
