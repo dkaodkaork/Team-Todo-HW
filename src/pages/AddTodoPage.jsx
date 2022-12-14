@@ -4,13 +4,17 @@ import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import AddTodoForm from "../components/add/addTodo/AddTodoForm";
-import AddTodoModal from "../components/add/addTodo/AddTodoModal";
-import Button from "../components/elements/Button";
+import AddTodoModal from "../components/elements/AddTodoModal";
+// import AddModal from "../hooks/AddModal";
+// import Button from "../components/elements/Button";
 
 const AddTodoPage = () => {
   const [modal, setModal] = useState({ clicked: false });
 
   const todoList = useSelector((state) => state.todo.todos);
+
+  // const AddTodoModal = AddModal(modal);
+  console.log(AddTodoModal);
   console.log(todoList);
 
   return (
