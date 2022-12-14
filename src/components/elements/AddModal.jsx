@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import classes from "./AddTodoModal.module.css";
+import classes from "./AddModal.module.css";
 import Button from "./Button";
 
 const AddTodoModal = () => {

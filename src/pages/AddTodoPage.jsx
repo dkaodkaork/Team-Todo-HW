@@ -4,17 +4,14 @@ import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import AddTodoForm from "../components/add/addTodo/AddTodoForm";
-import AddTodoModal from "../components/elements/AddTodoModal";
-// import AddModal from "../hooks/AddModal";
-// import Button from "../components/elements/Button";
+import AddModal from "../components/elements/AddModal";
 
 const AddTodoPage = () => {
   const [modal, setModal] = useState({ clicked: false });
 
   const todoList = useSelector((state) => state.todo.todos);
 
-  // const AddTodoModal = AddModal(modal);
-  console.log(AddTodoModal);
+  console.log(AddModal);
   console.log(todoList);
 
   return (
@@ -25,7 +22,7 @@ const AddTodoPage = () => {
         <AddTodoForm modal={modal} />
       </div>
       {console.log(modal.clicked)}
-      {modal.clicked ? <AddTodoModal modal={modal} /> : null}
+      {modal.clicked ? <AddModal modal={modal} /> : null}
     </div>
   );
 };
