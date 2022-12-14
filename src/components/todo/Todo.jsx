@@ -11,13 +11,13 @@ const Todo = () => {
 
   const fetchTodos = async () => {
     const { data } = await axios.get(
-      `https://hw99-json-server.vercel.app/todos/${paramsId}`
+      `https://wild-insidious-parsnip.glitch.me/todos/${paramsId}`
     );
     setTodos(data);
   };
 
   const onClickDelteButtonhandler = (todoId) => {
-    axios.delete(`https://hw99-json-server.vercel.app/todos/${todoId}`);
+    axios.delete(`https://wild-insidious-parsnip.glitch.me/todos/${todoId}`);
     setTodos([...todos, todos]);
   };
 

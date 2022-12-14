@@ -11,7 +11,9 @@ export const __getTodos = createAsyncThunk(
   "getTodos",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("https://hw99-json-server.vercel.app/todos");
+      const data = await axios.get(
+        "https://wild-insidious-parsnip.glitch.me/todos"
+      );
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);

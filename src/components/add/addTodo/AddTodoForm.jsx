@@ -57,7 +57,7 @@ const AddTodoForm = (props) => {
     }
     if (state.title && state.content !== "" && when.value !== "") {
       await axios
-        .post("https://hw99-json-server.vercel.app/todos", newTodo, {
+        .post("https://wild-insidious-parsnip.glitch.me/todos", newTodo, {
           headers: { "Content-Type": "application/json" },
         })
         .then(function (response) {
