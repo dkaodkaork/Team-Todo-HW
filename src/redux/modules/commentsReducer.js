@@ -4,6 +4,7 @@
 const POST_COMMENT = "POST_COMMENT";
 const GET_COMMENTS = "GET_COMMENTS";
 const DELETE_COMMENT = "DELETE_COMMENT";
+const PATCH_COMMENT = "PATCH_COMMENT";
 
 // Action Creator
 
@@ -16,7 +17,6 @@ const initialState = {
 const commentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_COMMENT:
-      console.log(action.payload);
       return { comments: [...state.comments, action.payload] };
     case GET_COMMENTS:
       return { ...state, comments: action.payload.data };
@@ -27,6 +27,8 @@ const commentsReducer = (state = initialState, action) => {
           (comment) => comment.id !== action.payload
         ),
       }; //넘겨줄 payload 없음!
+    case PATCH_COMMENT:
+      return { ...state };
     default:
       return { ...state };
   }

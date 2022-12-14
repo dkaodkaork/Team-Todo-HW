@@ -1,12 +1,6 @@
-//react
-import React from "react";
-//style
-
 //components
-
 import Layout from "../components/Layout";
 import Todo from "../components/todo/Todo";
-
 import Comments from "../components/detail/comments/Comments";
 
 const Detail = () => {
