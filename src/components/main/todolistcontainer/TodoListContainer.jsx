@@ -15,6 +15,8 @@ const TodoListContainer = () => {
     dispatch(__getTodos());
   }, []);
 
+  const array = ["plan", "working", "done"];
+
   return (
     <div className={classes.layout}>
       <div className={classes.header}>
@@ -26,12 +28,11 @@ const TodoListContainer = () => {
           value=" Todo 등록!"
           onClick={() => navigate("/add")}
         />
-        <div></div>
       </div>
       <div className={classes.box}>
-        <TodoCardList progressName="plan" />
-        <TodoCardList progressName="working" />
-        <TodoCardList progressName="done" />
+        {array.map((progressName) => {
+          return <TodoCardList progressName={progressName} />;
+        })}
       </div>
       <div className={classes.footer}>
         <span>copyright @항해99</span>
