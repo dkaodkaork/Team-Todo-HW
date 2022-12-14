@@ -12,6 +12,7 @@ import useDate from "../../../hooks/useDate";
 const AddTodoForm = ({ modal, setModal }) => {
   const [state, setState] = useState({ title: "", content: "" });
   const [when, setWhen] = useState({ checked: false, value: "" });
+  const [inputCheck, setInputCheck] = useState({ id: "", check: "success" });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,13 +32,14 @@ const AddTodoForm = ({ modal, setModal }) => {
     const id = e.target.id;
     const value = e.target.value;
     setState({ ...state, [id]: value });
+    setInputCheck({ ...inputCheck, id: "", check: "success" });
   };
   const whenStateChangeHandler = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
 
     setWhen({ ...when, checked: checked, value: value });
-    console.log(when);
+    setInputCheck({ ...inputCheck, id: "", check: "success" });
   };
   const addTodoHandler = async (event) => {
     event.preventDefault();
@@ -50,13 +52,15 @@ const AddTodoForm = ({ modal, setModal }) => {
       when: when.value,
       createDate: date,
     };
+    // ! 얼럿 메시지
     if (state.title === "") {
-      alert("제목을 입력해주세요");
+      setInputCheck({ ...inputCheck, id: "title", check: "fail" });
     } else if (state.content === "") {
-      alert("내용을 입력해주세요");
+      setInputCheck({ ...inputCheck, id: "content", check: "fail" });
     } else if (when.value === "") {
-      alert("언제할지 선택해주세요");
+      setInputCheck({ ...inputCheck, id: "when", check: "fail" });
     }
+
     if (state.title && state.content !== "" && when.value !== "") {
       await axios
         .post("https://wild-insidious-parsnip.glitch.me/todos", newTodo, {
@@ -77,13 +81,9 @@ const AddTodoForm = ({ modal, setModal }) => {
       radioInput3.current.checked = false;
       titleInput.current.focus();
       setModal({ ...modal, clicked: true });
+      setInputCheck({ ...inputCheck, id: "", check: "success" });
     }
   };
-  const alertMsgArr = [
-    "제목을 입력해주세요",
-    "내용을 입력해주세요",
-    "언제할 지 선택해주세요",
-  ];
   return (
     <div>
       <div className={classes.addTodoContainer}>
@@ -109,7 +109,11 @@ const AddTodoForm = ({ modal, setModal }) => {
               required
             />
           </div>
-          <div className={classes.alertTxt}></div>
+          {inputCheck.id === "title" && inputCheck.check === "fail" ? (
+            <div className={classes.alertTxt}>제목을 입력해주세요</div>
+          ) : (
+            <div className={classes.alertTxt}></div>
+          )}
           <div className={classes.inputContentDiv}>
             <label style={{}} htmlFor="content">
               내용
@@ -123,7 +127,11 @@ const AddTodoForm = ({ modal, setModal }) => {
               required
             />
           </div>
-          <div className={classes.alertTxt}></div>
+          {inputCheck.id === "content" && inputCheck.check === "fail" ? (
+            <div className={classes.alertTxt}>내용을 입력해주세요</div>
+          ) : (
+            <div className={classes.alertTxt}></div>
+          )}
 
           <div className={classes.inputWhenSelect}>
             <label className={classes.inputWhenMorning}>
@@ -160,7 +168,11 @@ const AddTodoForm = ({ modal, setModal }) => {
               <span>밤 (Night)</span>
             </label>
           </div>
-          <div className={classes.alertTxt}></div>
+          {inputCheck.id === "when" && inputCheck.check === "fail" ? (
+            <div className={classes.alertTxt}>언제 할 일인지 선택해주세요</div>
+          ) : (
+            <div className={classes.alertTxt}></div>
+          )}
         </form>
         <Button className={classes.addTodoBtn} onClick={addTodoHandler}>
           추가
