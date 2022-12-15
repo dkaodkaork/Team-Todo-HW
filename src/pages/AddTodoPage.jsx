@@ -49,14 +49,11 @@ const AddTodoPage = () => {
   };
   return (
     <div style={{ ...layoutStyle }}>
-      <div style={{ ...headerStyle }}>Team's Todo Add Todo</div>
-      <hr />
       <div>
         <AddTodoForm modal={modal} />
       </div>
       {console.log(modal.clicked)}
       {modal.clicked ? <AddModal modal={modal} /> : null}
-      <div style={{ ...footerStyle }}></div>
     </div>
   );
 };
