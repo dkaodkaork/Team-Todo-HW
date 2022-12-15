@@ -1,0 +1,101 @@
+:root {
+  --color-todos: #f24b59;
+  --color-working: #323f59;
+  --color-done: #203a40;
+  --color-main: #f2f2f2;
+  --color-button: #e66980;
+}
+.addTodoContainer {
+  width: 800px;
+  height: 600px;
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: var(--color-main);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.addTodoGobackbtn {
+  margin: 20px 87%;
+  height: 50px;
+  width: 150px;
+  font-size: 24px;
+  border: 2px solid var(--color-button) !important;
+  background-color: white !important;
+  color: var(--color-button) !important;
+}
+.addTodoGobackbtn:hover,
+.addTodoGobackbtn:active {
+  background: var(--color-button) !important;
+  border-color: var(--color-main) !important;
+  color: var(--color-main) !important;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  /* margin: 0 auto; */
+  gap: 15px;
+  padding: 15px;
+}
+.inputTitleDiv {
+  display: flex;
+  align-items: center;
+}
+.inputTitle {
+  width: 83%;
+  height: 80px;
+  font-size: 24px;
+  margin: 30px auto;
+  resize: none;
+  line-height: 40px;
+  border-color: rgb(184, 176, 176);
+  padding: 0 15px;
+  overflow: hidden;
+}
+.inputContentDiv {
+  display: flex;
+  align-items: center;
+}
+.inputContent {
+  width: 83%;
+  height: 100px;
+  font-size: 24px;
+  margin: 30px auto;
+  resize: none;
+  padding: 5% 15px 2% 15px;
+  border-color: rgb(184, 176, 176);
+}
+.inputWhenSelect {
+  /* display: flex;
+  height: 20px;
+  background-color: palevioletred;
+  margin: 10px auto; */
+  display: flex;
+  gap: 70px;
+  margin: 30px auto;
+}
+[type="radio"] {
+  vertical-align: middle;
+  appearance: none;
+  border: 1.5px solid white;
+  border-radius: 10px;
+  width: 22px;
+  height: 22px;
+  margin: 0 10px 0 0;
+}
+[type="radio"]:checked {
+  background-color: var(--color-button);
+}
+.addTodoBtn {
+  height: 50px;
+  width: 150px;
+  font-size: 24px;
+  /* padding: 10px; */
+  margin: 30px auto;
+  background-color: var(--color-button);
+}
+.addTodoBtn:hover,
+.addTodoBtn:active {
+  background: #cb697b !important;
+}
