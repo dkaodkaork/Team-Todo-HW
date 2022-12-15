@@ -14,24 +14,21 @@ const Todo = () => {
     content: "",
   });
 
-
   const fetchTodos = async () => {
     const { data } = await axios.get(
-      `https://wild-insidious-parsnip.glitch.me/todos/${paramsId}`
+      `${process.env.REACT_APP_DB_URL}/todos/${paramsId}`
     );
     setTodos(data);
   };
 
   const onClickDelteButtonhandler = (todoId) => {
-    axios.delete(`https://wild-insidious-parsnip.glitch.me/todos/${todoId}`);
+    axios.delete(`${process.env.REACT_APP_DB_URL}/todos/${todoId}`);
     setTodos([...todos, todos]);
   };
 
-
   const onClickEditButtonHandler = (todoId, edit) => {
-    axios.patch(`http://localhost:3001/todos/${todoId}`, edit);
+    axios.patch(`${process.env.REACT_APP_DB_URL}/todos/${todoId}`, edit);
   };
-
 
   useEffect(() => {
     fetchTodos();

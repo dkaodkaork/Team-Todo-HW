@@ -52,12 +52,9 @@ const Comments = () => {
     setCommentsData(newArr);
     //console.log(commentsData);
     if (newArr[index].editCheck === false) {
-      axios.patch(
-        `https://wild-insidious-parsnip.glitch.me/comments/${commentId}`,
-        {
-          comment: newArr[index].comment,
-        }
-      );
+      axios.patch(`${process.env.REACT_APP_DB_URL}/comments/${commentId}`, {
+        comment: newArr[index].comment,
+      });
     }
   };
 
