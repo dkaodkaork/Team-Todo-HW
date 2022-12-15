@@ -25,8 +25,8 @@ const TodoListContainer = () => {
         </Button>
       </div>
       <div className={classes.box}>
-        {array.map((progressName) => {
-          return <TodoCardList progressName={progressName} />;
+        {array.map((progressName, i) => {
+          return <TodoCardList progressName={progressName} key={i} />;
         })}
       </div>
     </div>
