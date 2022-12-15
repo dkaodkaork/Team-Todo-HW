@@ -15,6 +15,7 @@ const Comments = () => {
 
   //전체 comments 데이터 추출
   const commentsDataRedux = useSelector((state) => state.comments.comments);
+  //console.log("commentsDataRedux :", commentsDataRedux);
   //commnet State
   const [commentValue, setCommentValue] = useState("");
   //editCheck State

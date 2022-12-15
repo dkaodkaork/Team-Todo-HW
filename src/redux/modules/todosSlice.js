@@ -11,9 +11,7 @@ export const __getTodos = createAsyncThunk(
   "getTodos",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(
-        "https://wild-insidious-parsnip.glitch.me/todos"
-      );
+      const data = await axios.get(`${process.env.REACT_APP_DB_URL}/todos`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -26,33 +24,15 @@ export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    toggleStatusTodo: (state, action) => {
-      return {
-        ...state,
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload && todo.progress === "plan") {
-            return {
-              ...todo,
-              progress: "working",
-            };
-          } else if (
-            todo.id === action.payload &&
-            todo.progress === "working"
-          ) {
-            return {
-              ...todo,
-              progress: "done",
-            };
-          } else if (todo.id === action.payload && todo.progress === "done") {
-            return {
-              ...todo,
-              progress: "working",
-            };
-          } else {
-            return todo;
-          }
-        }),
-      };
+    __patchTodos: (state, action) => {
+      const edittodo = action.payload.data;
+      const { todos } = state;
+      const tempTodos = [...todos];
+
+      const index = todos.findIndex((todo) => todo.id === edittodo.id);
+      tempTodos.splice(index, 1, edittodo);
+
+      return { ...state, todos: tempTodos };
     },
   },
   extraReducers: {
@@ -70,5 +50,5 @@ export const todosSlice = createSlice({
   },
 });
 
-export const { toggleStatusTodo } = todosSlice.actions;
+export const { toggleStatusTodo, __patchTodos } = todosSlice.actions;
 export default todosSlice.reducer;

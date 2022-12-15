@@ -3,14 +3,14 @@
   justify-content: center;
   align-items: center;
 
-  width: 330px;
+  width: 300px;
   height: 60px;
 
   font-size: 40px;
   font-weight: 600;
 
-  background-color: black;
-  color: white;
+  background-color: var(--color-main);
+  color: black;
 
   border-radius: 10px;
 }
