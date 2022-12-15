@@ -1,80 +1,93 @@
-.morningCard {
+.planCard {
   width: 300px;
-
   height: 240px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  gap: 5px; /* flex 아이템들의 간격 설정*/
 
   padding: 15px;
 
-  border-radius: 10px;
-  background-color: #f44e5b;
   color: white;
+  background-color: var(--color-todos);
+
+  font-size: 25px;
+
+  border-radius: 10px;
 }
 
-.afternoonCard {
+.workingCard {
   width: 300px;
-
   height: 240px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  gap: 5px; /* flex 아이템들의 간격 설정*/
 
   padding: 15px;
 
-  border-radius: 10px;
-
-  background-color: #ac8470;
   color: white;
+  background-color: var(--color-done);
+
+  font-size: 25px;
+
+  border-radius: 10px;
 }
 
-.eveningCard {
+.doneCard {
   width: 300px;
-
   height: 240px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  gap: 5px; /* flex 아이템들의 간격 설정*/
-
   padding: 15px;
 
-  border-radius: 10px;
-
-  background-color: #262f36;
   color: white;
+  background-color: var(--color-working);
+
+  font-size: 25px;
+
+  border-radius: 10px;
 }
 
 .detailbtn {
-  margin-right: auto;
-  width: 100px;
-  height: 40px;
-  background-color: #949799;
-  font-size: medium !important;
-  font-weight: bold;
-  /* color: white; */
-  /* border: none; */
-  border: 1px solid #949799;
+  width: 110px;
+  height: 60px;
 
+  margin-right: auto;
+
+  background-color: transparent !important;
+
+  font-size: 20px !important;
+  font-weight: bolder;
+
+  border: none !important;
   border-radius: 10px;
 }
 
 .arrowbtn {
   width: 100px;
-  /* height: 50px; */
+
   margin-left: auto;
-  border: none;
+
   background-color: transparent !important;
+
+  border: none !important;
+}
+
+.titlestyle {
+  margin: auto;
+}
+
+p {
+  width: 200;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 30px;
+  font-weight: bold;
+}
+
+p.auto {
+  overflow: auto;
 }

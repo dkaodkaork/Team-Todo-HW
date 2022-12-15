@@ -57,7 +57,7 @@ const AddTodoForm = (props) => {
     }
     if (state.title && state.content !== "" && when.value !== "") {
       await axios
-        .post("https://wild-insidious-parsnip.glitch.me/todos", newTodo, {
+        .post(`${process.env.REACT_APP_DB_URL}/todos`, newTodo, {
           headers: { "Content-Type": "application/json" },
         })
         .then(function (response) {
