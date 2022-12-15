@@ -3,21 +3,35 @@ import classes from "./Todo.module.css";
 import axios from "axios";
 import Button from "../elements/Button";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Todo = () => {
   const navigate = useNavigate();
   const { paramsId } = useParams();
   const [todos, setTodos] = useState([]);
+  const [targetId, setTargetId] = useState([]);
+  const [editTodo, setEditTodo] = useState({
+    content: "",
+  });
+
 
   const fetchTodos = async () => {
-    const { data } = await axios.get(`http://localhost:3001/todos/${paramsId}`);
+    const { data } = await axios.get(
+      `https://wild-insidious-parsnip.glitch.me/todos/${paramsId}`
+    );
     setTodos(data);
   };
 
   const onClickDelteButtonhandler = (todoId) => {
-    axios.delete(`http://localhost:3001/todos/${todoId}`);
+    axios.delete(`https://wild-insidious-parsnip.glitch.me/todos/${todoId}`);
     setTodos([...todos, todos]);
   };
+
+
+  const onClickEditButtonHandler = (todoId, edit) => {
+    axios.patch(`http://localhost:3001/todos/${todoId}`, edit);
+  };
+
 
   useEffect(() => {
     fetchTodos();
@@ -31,6 +45,9 @@ const Todo = () => {
   //   if (newArr[index].edit === )
   //   axios.patch(`http://localhost:3001/todos/${todoContent}`, edit)
   // };
+  // console.log(todos.content);
+
+  const setContentsData = () => {};
 
   return (
     <div className={classes.card}>
@@ -49,15 +66,23 @@ const Todo = () => {
         <div className={classes.maintitle}>
           <div className={classes.title}>{todos.title}</div>
         </div>
-        <div>
-          <p className={classes.content}>{todos.content}</p>
+        <div className={classes.content}>
+          {}
+          <textarea
+            className={classes.remove}
+            type="text"
+            value={todos.content}
+            placeholder="수정값 입력"
+            onChange={(ev) => {
+              setEditTodo({
+                ...editTodo,
+                title: ev.target.value,
+              });
+            }}
+          />
         </div>
 
         <div className={classes.when}>
-          <h4>
-            {todos.createDate} ({todos.when})
-          </h4>
-
           <div className={classes.btn}>
             <Button
               type="button"
@@ -66,11 +91,14 @@ const Todo = () => {
             >
               삭제
             </Button>
+
             <Button
-              // onClick={() => onClickEditButtonHandler()}
+              // onClick={() =>
+              //   onClickEditButtonHandler(targetId, content.editTodo)
+              // }
               className={classes.btn3}
             >
-              수정
+              완료
             </Button>
           </div>
         </div>

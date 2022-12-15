@@ -1,7 +1,12 @@
+.title {
+  margin: 15px 0;
+}
+
 .addbox {
-  /* margin: 20px 0px; */
+  margin: 20px 0px;
   margin-bottom: 50px;
-  background-color: #eee;
+  background-color: var(--color-done);
+  color: white;
   padding: 20px;
   border-radius: 5px;
   display: flex;
@@ -38,4 +43,5 @@ textarea {
   border-radius: 6px;
   border: 1px solid #eee;
   outline: none;
+  resize: none;
 }

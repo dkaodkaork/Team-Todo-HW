@@ -1,6 +1,5 @@
 .comment_wrap {
   margin-top: 20px;
-  border: 2px solid #eee;
 }
 
 .comment_box {
@@ -36,8 +35,9 @@ label {
   width: 99%;
   height: 40px;
   border-radius: 6px;
-  border: 1px solid #ba4c57;
+  border: 1px solid var(--color-todos);
   outline: none;
+  resize: none;
 }
 .comment:disabled {
   background-color: transparent;
