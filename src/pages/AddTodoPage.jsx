@@ -14,31 +14,6 @@ const AddTodoPage = () => {
   console.log(AddModal);
   console.log(todoList);
 
-  const headerStyle = {
-    display: "flex",
-    alignItems: "center",
-    fontSize: "40px",
-    fontWeight: "bold",
-    paddingLeft: "20px",
-    marginTop: "30px",
-    height: "70px",
-    borderRadius: "10px",
-    backgroundColor: "#949799",
-    color: "black",
-  };
-
-  const footerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "15px",
-    backgroundColor: "#949799",
-    color: "black",
-    margin: "30px 0px 30px 0px",
-    height: "70px",
-    borderRadius: "10px",
-  };
-
   const layoutStyle = {
     maxWidth: "1200px",
     minWidth: "900px",
