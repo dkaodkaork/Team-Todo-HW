@@ -55,3 +55,21 @@
 
   margin: auto;
 }
+
+.addbtn {
+  /* margin-left: auto; */
+  width: 170px;
+  height: 60px !important;
+
+  font-size: 25px !important;
+  font-weight: bold !important;
+  border: 2px solid #949799 !important;
+  background-color: white !important;
+  color: #949799 !important;
+}
+.addbtn:hover,
+.addbtn:active {
+  background: #949799 !important;
+  border-color: #9aa1aa !important;
+  color: white !important; /* 호버된후 */
+}

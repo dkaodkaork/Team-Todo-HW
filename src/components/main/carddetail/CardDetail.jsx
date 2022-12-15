@@ -1,27 +1,23 @@
 import classes from "./CardDetail.module.css";
 import CustomButton from "../custombutton/CustomButton";
+import Button from "../../elements/Button";
 
 const CardDetail = (props) => {
   const { icon, title, onClickDetail, onClickProgress, className } = props;
 
   const btnclassName = {
-    detail: "detailbtn",
     arrow: "arrowbtn",
   };
 
   return (
     <div className={classes[className]}>
-      <CustomButton
-        className={btnclassName.detail}
-        value="상세보기"
-        onClick={onClickDetail}
-      />
+      <Button className={classes.detailbtn} onClick={onClickDetail}>
+        상세보기
+      </Button>
       <h2>{title}</h2>
-      <CustomButton
-        className={btnclassName.arrow}
-        value={icon}
-        onClick={onClickProgress}
-      />
+      <Button className={classes.arrowbtn} onClick={onClickProgress}>
+        {icon}
+      </Button>
     </div>
   );
 };

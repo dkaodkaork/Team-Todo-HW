@@ -56,3 +56,25 @@
   background-color: #262f36;
   color: white;
 }
+
+.detailbtn {
+  margin-right: auto;
+  width: 100px;
+  height: 40px;
+  background-color: #949799;
+  font-size: medium !important;
+  font-weight: bold;
+  /* color: white; */
+  /* border: none; */
+  border: 1px solid #949799;
+
+  border-radius: 10px;
+}
+
+.arrowbtn {
+  width: 100px;
+  /* height: 50px; */
+  margin-left: auto;
+  border: none;
+  background-color: transparent !important;
+}

@@ -1,10 +1,11 @@
 import classes from "./TodoListContainer.module.css";
-import CustomButton from "../custombutton/CustomButton";
+// import CustomButton from "../custombutton/CustomButton";
 import { useNavigate } from "react-router-dom";
 import TodoCardList from "../todocardlist/TodoCardList";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { __getTodos } from "../../../redux/modules/todosSlice";
+import Button from "../../elements/Button";
 
 const TodoListContainer = () => {
   const classname = "addbtn";
@@ -23,11 +24,9 @@ const TodoListContainer = () => {
         <span>TodoList</span>
       </div>
       <div className={classes.btnbox}>
-        <CustomButton
-          className={classname}
-          value=" Todo 등록!"
-          onClick={() => navigate("/add")}
-        />
+        <Button className={classes.addbtn} onClick={() => navigate("/add")}>
+          Todo 등록!
+        </Button>
       </div>
       <div className={classes.box}>
         {array.map((progressName) => {
