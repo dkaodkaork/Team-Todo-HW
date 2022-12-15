@@ -9,11 +9,7 @@ const Todo = () => {
   const navigate = useNavigate();
   const { paramsId } = useParams();
   const [todos, setTodos] = useState([]);
-  const [targetId, setTargetId] = useState([]);
-  const [editTodo, setEditTodo] = useState({
-    content: "",
-  });
-
+  const [edit, setEdit] = useState(false);
 
   const fetchTodos = async () => {
     const { data } = await axios.get(
@@ -27,27 +23,29 @@ const Todo = () => {
     setTodos([...todos, todos]);
   };
 
+  // const contentsDataRedux = useSelector((state) => state.contents.contents);
 
-  const onClickEditButtonHandler = (todoId, edit) => {
-    axios.patch(`http://localhost:3001/todos/${todoId}`, edit);
+  // const onChangeTextareaCommentHandler = (event, contentIndex) => {
+  //   const newArr = [...contentsDataRedux];
+  //   newArr[contentIndex].content = event.target.value;
+  //   const newArrContent = newArr[contentIndex].content;
+  //   setContentsValue(newArrContent);
+  // };
+
+  const onClickEditButtonHandler = (todosId) => {
+    setEdit(!edit);
+    if (edit === true) {
+      axios.patch(`https://wild-insidious-parsnip.glitch.me/todos/${todosId}`, {
+        content: todosId,
+      });
+      // } else {
+      //   null;
+    }
   };
-
 
   useEffect(() => {
     fetchTodos();
   }, []);
-
-  // const onClickEditButtonHandler = (todosContent, edit) => {
-  //   const newArr = [...todosData]
-  //   const index = newArr.findIndex((el) => el.content === todosContent)
-  //   newArr[index].edit = !edit
-  //   setTodosData(newArr)
-  //   if (newArr[index].edit === )
-  //   axios.patch(`http://localhost:3001/todos/${todoContent}`, edit)
-  // };
-  // console.log(todos.content);
-
-  const setContentsData = () => {};
 
   return (
     <div className={classes.card}>
@@ -64,44 +62,41 @@ const Todo = () => {
           </Button>
         </div>
         <div className={classes.maintitle}>
-          <div className={classes.title}>{todos.title}</div>
+          <div className={classes.title}>
+            제목 <p /> {todos.title}
+          </div>
         </div>
         <div className={classes.content}>
-          {}
-          <textarea
-            className={classes.remove}
-            type="text"
-            value={todos.content}
-            placeholder="수정값 입력"
-            onChange={(ev) => {
-              setEditTodo({
-                ...editTodo,
-                title: ev.target.value,
-              });
-            }}
-          />
+          내용 <br />
+          {todos.content}
         </div>
-
         <div className={classes.when}>
+          {todos.when}
           <div className={classes.btn}>
             <Button
               type="button"
-              onClick={() => onClickDelteButtonhandler(todos.id)}
+              onClick={() => onClickDelteButtonhandler(todos.id, navigate("/"))}
               className={classes.btn2}
             >
               삭제
             </Button>
 
             <Button
-              // onClick={() =>
-              //   onClickEditButtonHandler(targetId, content.editTodo)
-              // }
+              onClick={() => onClickEditButtonHandler(todos.id)}
               className={classes.btn3}
             >
-              완료
+              수정
             </Button>
           </div>
         </div>
+        {edit ? (
+          <textarea
+            className={classes.remove}
+            type="text"
+            // value={content.content}
+            // onChange={(event) => onChangeTextareaCommentHandler(event)}
+          />
+        ) : null}
       </div>
     </div>
   );

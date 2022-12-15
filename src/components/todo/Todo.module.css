@@ -9,7 +9,7 @@
   justify-content: center;
 } */
 .wrap {
-  width: 1000px;
+  margin-top: 50px;
   height: 900px;
   border: 1px solid black;
   display: flex;
