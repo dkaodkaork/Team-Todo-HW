@@ -14,6 +14,7 @@ const AddTodoForm = (props) => {
 
   const [state, setState] = useState({ title: "", content: "" });
   const [when, setWhen] = useState({ checked: false, value: "" });
+  const [inputCheck, setInputCheck] = useState({ id: "", check: "success" });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,13 +49,15 @@ const AddTodoForm = (props) => {
       when: when.value,
       createDate: date,
     };
+
     if (state.title === "") {
-      alert("제목을 입력해주세요");
+      setInputCheck({ ...inputCheck, id: "title", check: "fail" });
     } else if (state.content === "") {
-      alert("내용을 입력해주세요");
+      setInputCheck({ ...inputCheck, id: "content", check: "fail" });
     } else if (when.value === "") {
-      alert("언제할지 선택해주세요");
+      setInputCheck({ ...inputCheck, id: "when", check: "fail" });
     }
+
     if (state.title && state.content !== "" && when.value !== "") {
       await axios
         .post(`${process.env.REACT_APP_DB_URL}/todos`, newTodo, {
@@ -75,6 +78,7 @@ const AddTodoForm = (props) => {
       radioInput3.current.checked = false;
       titleInput.current.focus();
       props.modal.clicked = true;
+      setInputCheck({ ...inputCheck, id: "", check: "success" });
     }
   };
   return (
@@ -88,7 +92,10 @@ const AddTodoForm = (props) => {
       <div className={classes.addTodoContainer}>
         <form className={classes.formContainer}>
           <div className={classes.inputTitleDiv}>
-            <label style={{ fontSize: "24px" }} htmlFor="title">
+            <label
+              style={{ marginTop: "30px", fontSize: "24px" }}
+              htmlFor="title"
+            >
               제목
             </label>
             <textarea
@@ -102,8 +109,16 @@ const AddTodoForm = (props) => {
               required
             />
           </div>
+          {inputCheck.id === "title" && inputCheck.check === "fail" ? (
+            <div className={classes.alertTxt}>제목을 입력해주세요</div>
+          ) : (
+            <div className={classes.alertTxt}></div>
+          )}
           <div className={classes.inputContentDiv}>
-            <label style={{ fontSize: "24px" }} htmlFor="content">
+            <label
+              style={{ marginTop: "30px", fontSize: "24px" }}
+              htmlFor="content"
+            >
               내용
             </label>
             <textarea
@@ -115,6 +130,11 @@ const AddTodoForm = (props) => {
               required
             />
           </div>
+          {inputCheck.id === "content" && inputCheck.check === "fail" ? (
+            <div className={classes.alertTxt}>내용을 입력해주세요</div>
+          ) : (
+            <div className={classes.alertTxt}></div>
+          )}
 
           <div className={classes.inputWhenSelect}>
             <label className={classes.inputWhenMorning}>
@@ -153,6 +173,11 @@ const AddTodoForm = (props) => {
               <span style={{ fontSize: "24px" }}>밤 (Night)</span>
             </label>
           </div>
+          {inputCheck.id === "when" && inputCheck.check === "fail" ? (
+            <div className={classes.alertTxt}>언제 할 일인지 선택해주세요</div>
+          ) : (
+            <div className={classes.alertTxt}></div>
+          )}
         </form>
         <Button className={classes.addTodoBtn} onClick={addTodoHandler}>
           추가
