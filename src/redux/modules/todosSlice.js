@@ -26,34 +26,47 @@ export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    toggleStatusTodo: (state, action) => {
-      return {
-        ...state,
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload && todo.progress === "plan") {
-            return {
-              ...todo,
-              progress: "working",
-            };
-          } else if (
-            todo.id === action.payload &&
-            todo.progress === "working"
-          ) {
-            return {
-              ...todo,
-              progress: "done",
-            };
-          } else if (todo.id === action.payload && todo.progress === "done") {
-            return {
-              ...todo,
-              progress: "working",
-            };
-          } else {
-            return todo;
-          }
-        }),
-      };
+    __patchTodos: (state, action) => {
+      // console.log(action); // payload
+      // console.log(action.payload); // payload 안에 있는 DAta
+      // console.log(action.payload.data);
+      const edittodo = action.payload.data;
+      const { todos } = state;
+      const tempTodos = [...todos];
+      // console.log(tempTodos); // Store에 있는 값 복사
+      const index = todos.findIndex((todo) => todo.id === edittodo.id); // 바꾸고자하는 거 찾아주고
+      tempTodos.splice(index, 1, edittodo); // patch한 todo를 찾아서 변경
+
+      return { ...state, todos: tempTodos };
     },
+    // toggleStatusTodo: (state, action) => {
+    //   return {
+    //     ...state,
+    //     todos: state.todos.map((todo) => {
+    //       if (todo.id === action.payload && todo.progress === "plan") {
+    //         return {
+    //           ...todo,
+    //           progress: "working",
+    //         };
+    //       } else if (
+    //         todo.id === action.payload &&
+    //         todo.progress === "working"
+    //       ) {
+    //         return {
+    //           ...todo,
+    //           progress: "done",
+    //         };
+    //       } else if (todo.id === action.payload && todo.progress === "done") {
+    //         return {
+    //           ...todo,
+    //           progress: "working",
+    //         };
+    //       } else {
+    //         return todo;
+    //       }
+    //     }),
+    //   };
+    // },
   },
   extraReducers: {
     [__getTodos.pending]: (state) => {
@@ -70,5 +83,5 @@ export const todosSlice = createSlice({
   },
 });
 
-export const { toggleStatusTodo } = todosSlice.actions;
+export const { toggleStatusTodo, __patchTodos } = todosSlice.actions;
 export default todosSlice.reducer;
