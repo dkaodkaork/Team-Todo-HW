@@ -1,27 +1,35 @@
+:root {
+  --color-todos: #f24b59;
+  --color-working: #323f59;
+  --color-done: #203a40;
+  --color-main: #f2f2f2;
+  --color-button: #e66980;
+}
 .addTodoContainer {
-  width: 600px;
-  height: 400px;
+  width: 800px;
+  height: 600px;
   border: 1px solid white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  background-color: #c3cbd6;
+  background-color: var(--color-main);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .addTodoGobackbtn {
-  margin: 5px 75%;
-  height: 40px;
-  width: 140px;
-  border: 2px solid #d05663 !important;
+  margin: 20px 87%;
+  height: 50px;
+  width: 150px;
+  font-size: 24px;
+  border: 2px solid var(--color-button) !important;
   background-color: white !important;
-  color: #d05663 !important;
+  color: var(--color-button) !important;
 }
 .addTodoGobackbtn:hover,
 .addTodoGobackbtn:active {
-  background: #d05663 !important;
-  border-color: #9aa1aa !important;
-  color: white !important;
+  background: var(--color-button) !important;
+  border-color: var(--color-main) !important;
+  color: var(--color-main) !important;
 }
 .formContainer {
   display: flex;
@@ -36,12 +44,14 @@
 }
 .inputTitle {
   width: 83%;
-  height: 40px;
-  margin: 10px auto;
+  height: 80px;
+  font-size: 24px;
+  margin: 30px auto;
   resize: none;
   line-height: 40px;
   border-color: rgb(184, 176, 176);
   padding: 0 15px;
+  overflow: hidden;
 }
 .inputContentDiv {
   display: flex;
@@ -49,8 +59,9 @@
 }
 .inputContent {
   width: 83%;
-  height: 50px;
-  margin: 10px auto;
+  height: 100px;
+  font-size: 24px;
+  margin: 30px auto;
   resize: none;
   padding: 5% 15px 2% 15px;
   border-color: rgb(184, 176, 176);
@@ -62,26 +73,29 @@
   margin: 10px auto; */
   display: flex;
   gap: 70px;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 [type="radio"] {
   vertical-align: middle;
   appearance: none;
   border: 1.5px solid white;
   border-radius: 10px;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   margin: 0 10px 0 0;
 }
 [type="radio"]:checked {
-  background-color: #d05663;
+  background-color: var(--color-button);
 }
 .addTodoBtn {
-  height: 40px;
-  width: 140px;
-  margin: 10px auto;
+  height: 50px;
+  width: 150px;
+  font-size: 24px;
+  /* padding: 10px; */
+  margin: 30px auto;
+  background-color: var(--color-button);
 }
 .addTodoBtn:hover,
 .addTodoBtn:active {
-  background: #be4c57 !important;
+  background: #cb697b !important;
 }

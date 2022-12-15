@@ -79,16 +79,16 @@ const AddTodoForm = (props) => {
   };
   return (
     <div>
+      <Button
+        className={classes.addTodoGobackbtn}
+        onClick={() => navigate("/")}
+      >
+        이전으로
+      </Button>
       <div className={classes.addTodoContainer}>
-        <Button
-          className={classes.addTodoGobackbtn}
-          onClick={() => navigate("/")}
-        >
-          이전으로
-        </Button>
         <form className={classes.formContainer}>
           <div className={classes.inputTitleDiv}>
-            <label style={{}} htmlFor="title">
+            <label style={{ fontSize: "24px" }} htmlFor="title">
               제목
             </label>
             <textarea
@@ -103,7 +103,7 @@ const AddTodoForm = (props) => {
             />
           </div>
           <div className={classes.inputContentDiv}>
-            <label style={{}} htmlFor="content">
+            <label style={{ fontSize: "24px" }} htmlFor="content">
               내용
             </label>
             <textarea
@@ -126,7 +126,7 @@ const AddTodoForm = (props) => {
                 onChange={whenStateChangeHandler}
                 ref={radioInput1}
               />
-              <span>오전 (AM)</span>
+              <span style={{ fontSize: "24px" }}>오전 (AM)</span>
             </label>
 
             <label className={classes.inputWhenAfternoon}>
@@ -138,7 +138,7 @@ const AddTodoForm = (props) => {
                 onChange={whenStateChangeHandler}
                 ref={radioInput2}
               />
-              <span> 오후 (PM)</span>
+              <span style={{ fontSize: "24px" }}> 오후 (PM)</span>
             </label>
 
             <label className={classes.inputWhenEvening}>
@@ -150,7 +150,7 @@ const AddTodoForm = (props) => {
                 onChange={whenStateChangeHandler}
                 ref={radioInput3}
               />
-              <span>밤 (Night)</span>
+              <span style={{ fontSize: "24px" }}>밤 (Night)</span>
             </label>
           </div>
         </form>
