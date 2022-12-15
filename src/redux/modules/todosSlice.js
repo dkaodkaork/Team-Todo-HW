@@ -25,16 +25,12 @@ export const todosSlice = createSlice({
   initialState,
   reducers: {
     __patchTodos: (state, action) => {
-      console.log(action); // payload
-
-      console.log(action.payload.data);
       const edittodo = action.payload.data;
       const { todos } = state;
       const tempTodos = [...todos];
-      console.log(tempTodos); // Store에 있는 값 복사
-      const index = todos.findIndex((todo) => todo.id === edittodo.id); // 바꾸고자하는 거 찾아주고
-      tempTodos.splice(index, 1, edittodo); // patch한 todo를 찾아서 변경
-      console.log(tempTodos);
+
+      const index = todos.findIndex((todo) => todo.id === edittodo.id);
+      tempTodos.splice(index, 1, edittodo);
 
       return { ...state, todos: tempTodos };
     },
